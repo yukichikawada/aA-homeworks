@@ -6,8 +6,8 @@ Instructions: implement all of the pending specs (the `it` statements without bl
 =end
 
 describe Dessert do
-  subject(:dessert) { Dessert.new("Cake", 3, "Guy")}
-  let(:chef) { double("chef") }
+  let(:chef) { double("chef", name: "Guy") }
+  let(:dessert) { Dessert.new("Cake", 3, chef) }
 
   describe "#initialize" do
     it "sets a type" do
@@ -28,24 +28,49 @@ describe Dessert do
   end
 
   describe "#add_ingredient" do
-    it "adds an ingredient to the ingredients array"
+    it "adds an ingredient to the ingredients array" do
+      dessert.add_ingredient("flour")
+      expect(dessert.ingredients).to eq(["flour"])
+    end
   end
 
   describe "#mix!" do
-    it "shuffles the ingredient array"
+    it "shuffles the ingredient array" do
+      ingredients = ["flour", "water", "egg", "sugar", "butter", "vanilla"]
+
+      ingredients.each do |ingredient|
+        dessert.add_ingredient(ingredient)
+      end
+
+      expect(dessert.ingredients).to eq(ingredients)
+      dessert.mix!
+      expect(dessert.ingredients).not_to eq(ingredients)
+      expect(dessert.ingredients.sort).to eq(ingredients.sort)
+    end
   end
 
   describe "#eat" do
-    it "subtracts an amount from the quantity"
+    it "subtracts an amount from the quantity" do
+      dessert.eat(1)
+      expect(dessert.quantity).to eq(2)
+    end
 
-    it "raises an error if the amount is greater than the quantity"
+    it "raises an error if the amount is greater than the quantity" do
+      expect { dessert.eat(4) }.to raise_error
+    end
   end
 
   describe "#serve" do
-    it "contains the titleized version of the chef's name"
+    it "contains the titleized version of the chef's name" do
+      allow(chef).to receive(:titleize).and_return("Chef Guy")
+      expect(dessert.serve).to eq("Chef Guy has made 3 Cakes!")
+    end
   end
 
   describe "#make_more" do
-    it "calls bake on the dessert's chef with the dessert passed in"
+    it "calls bake on the dessert's chef with the dessert passed in" do
+      expect(chef).to receive(:bake).with(dessert)
+      dessert.make_more
+    end
   end
 end
