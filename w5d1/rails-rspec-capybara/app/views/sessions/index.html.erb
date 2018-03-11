@@ -1,0 +1,11 @@
+<h1>Log in!</h1>
+<form class="session" action="<%= session_url %>" method="post">
+  <label for="email">Email:
+    <input type="text" name="session[email]" value="" id="email">
+  </label>
+
+  <label for="password">Password: </label>
+  <input type="password" name="session[password]" value="">
+
+  <input type="submit" value="Log in">
+</form>

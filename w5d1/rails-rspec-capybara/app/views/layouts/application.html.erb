@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+
+  </head>
+
+  <body>
+    <nav>
+      <% if logged_in? %>
+        <form action="<%= session_url %>" method="post">
+          <input type="hidden" name="_method" value="delete" />
+          <input type="submit" value="Log Out!" class="log-out-button">
+        </form>
+      <% else %>
+        <a href="<%= new_session_url %>" class="log-in-link">Log in</a>
+        <a href="<%= new_user_url %>" class="sign-up-link">Sign up</a>
+      <% end %>
+    </nav>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

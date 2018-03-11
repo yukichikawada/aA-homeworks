@@ -1,0 +1,16 @@
+<h1>Edit a band!</h1>
+
+<% if logged_in? %>
+<form class="band" action="<%= band_url(@band) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <label for="">Name:
+    <input type="text" name="band[name]" value="<%= @band.name %>">
+  </label>
+
+  <input type="submit" value="Submit">
+</form>
+
+<% else %>
+  <%= @band.name %>
+  <h3>Must be logged in to edit a band</h3>
+<% end %>

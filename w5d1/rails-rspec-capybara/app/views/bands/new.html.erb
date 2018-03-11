@@ -1,0 +1,15 @@
+<h1>Create a band!</h1>
+
+<% if logged_in? %>
+<form class="band" action="<%= bands_url %>" method="post">
+
+  <label for="">Name:
+    <input type="text" name="band[name]">
+  </label>
+
+  <input type="submit" value="Submit">
+</form>
+
+<% else %>
+  <h3>Must be logged in to create a band</h3>
+<% end %>

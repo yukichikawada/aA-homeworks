@@ -1,0 +1,20 @@
+<h1>All the bands:</h1>
+
+<a href="<%= new_band_url %>">Create a new band</a>
+
+<% @bands.each do |band| %>
+  <h3><%= band.name %></h3>
+  <ul>
+    <li>
+      <a href="<%= edit_band_url(band)%>">Edit</a>
+    </li>
+    <li>
+      <form class="delete-band" action="<%= band_url(band) %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+
+        <input type="submit" value="Delete">
+      </form>
+    </li>
+  </ul>
+
+<% end %>
