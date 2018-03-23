@@ -1,7 +1,7 @@
 {
-  "name": "solution",
+  "name": "calculator",
   "version": "1.0.0",
-  "description": "This homework covers configuration of a new React project. Download the skeleton [here][skeleton].",
+  "description": "",
   "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
