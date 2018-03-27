@@ -2978,20 +2978,35 @@ var _root2 = _interopRequireDefault(_root);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var addLoggingToDistpatch = function addLoggingToDistpatch(store) {
-  var dispatcher = store.dispatch;
-  return function (action) {
-    console.log(store.getState());
-    console.log(action);
-    dispatcher(action);
-    console.log(store.getState());
+  return function (next) {
+    return function (action) {
+      console.log(store.getState());
+      console.log(action);
+      next(action);
+      console.log(store.getState());
+    };
   };
+};
+
+var applyMiddlewares = function applyMiddlewares(store) {
+  for (var _len = arguments.length, middleware = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    middleware[_key - 1] = arguments[_key];
+  }
+
+  var dispatch = store.dispatch;
+  console.log(middleware);
+  middleware.forEach(function (mdlwr) {
+    dispatch = mdlwr(store)(dispatch);
+  });
+
+  return Object.assign({}, store, { dispatch: dispatch });
 };
 
 document.addEventListener('DOMContentLoaded', function () {
   var preloadedState = localStorage.state ? JSON.parse(localStorage.state) : {};
   var store = (0, _store2.default)(preloadedState);
 
-  store.dispatch = addLoggingToDistpatch(store);
+  store = applyMiddlewares(store, addLoggingToDistpatch);
 
   var root = document.getElementById('content');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
