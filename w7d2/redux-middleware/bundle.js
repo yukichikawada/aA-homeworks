@@ -2977,9 +2977,21 @@ var _root2 = _interopRequireDefault(_root);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var addLoggingToDistpatch = function addLoggingToDistpatch(store) {
+  var dispatcher = store.dispatch;
+  return function (action) {
+    console.log(store.getState());
+    console.log(action);
+    dispatcher(action);
+    console.log(store.getState());
+  };
+};
+
 document.addEventListener('DOMContentLoaded', function () {
   var preloadedState = localStorage.state ? JSON.parse(localStorage.state) : {};
   var store = (0, _store2.default)(preloadedState);
+
+  store.dispatch = addLoggingToDistpatch(store);
 
   var root = document.getElementById('content');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
