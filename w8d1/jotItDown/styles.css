@@ -1,0 +1,115 @@
+.splash-link-hover a:hover {
+  color: lightgreen;
+}
+
+.splash-nav {
+  background-color: #3C3A3A;
+}
+
+.splash-nav-content {
+  height: 48px;
+  width: 80vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.splash-nav h1 {
+  color: white;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.splash-nav a {
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 7px 2px 7px 2px;
+  padding: 8px 14px 8px 14px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+.splash-background {
+  background-image: url("./splash.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: calc(100vh - 96px);
+}
+
+.splash-main-content {
+  background-color: lightgrey;
+  height: 37vh;
+  width: 45vw;
+  margin: auto;
+  border-radius: 25px;
+  position: relative;
+  top: 250px;
+}
+
+.splash-main-form {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.splash-p {
+  margin: auto;
+  margin-top: 30px;
+  background-color: white;
+  height: 60px;
+  border-radius: 15px;
+  width: 45%;
+}
+
+.splash-p p {
+  margin: auto;
+  width: 90%;
+  margin-top: 15px;
+}
+
+.splash-a {
+  height: 60px;
+  border-radius: 15px;
+  width: 45%;
+  margin: auto;
+  position: relative;
+  top: 100px;
+  background-color: white;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+}
+
+.splash-a a {
+  margin: auto;
+  color: black;
+  display: block;
+  align-self: center;
+  text-decoration: none;
+  width: 80px;
+  margin-top: 15px;
+}
+
+.splash-footer {
+  height: 48px;
+  background-color: #3C3838;
+}
+
+.splash-footer-links {
+  width: 40vw;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.splash-footer-links a {
+  text-decoration: none;
+  color: lightgrey;
+  display: inline-block;
+  padding-top: 10px;
+}
